@@ -51402,14 +51402,14 @@ if(s!=null)s.aM()
 s=this.w
 if(s!=null)s.aM()
 this.aD()},
-S(a){var s,r,q=this,p=null,o=A.ak(a).ax,n=o.y2
-o=n==null?o.c:n
-q.a.toString
-n=A.a2H("Smart Helmet Dashboard",p)
+S(a){var s,r,q,p=this,o=null,n=A.ak(a).ax,m=n.y2
+n=m==null?n.c:m
+p.a.toString
+m=A.a2H("Smart Helmet Dashboard",o)
 s=t.nA
-r=A.b([B.JT,A.a2H("Acceleration: ${_acceleration.toStringAsFixed(2)} m/s\xb2",A.ak(a).p1.e),B.F6,A.a5q(B.JV,new A.YT(q))],s)
-if(q.e)r.push(A.a4L(A.b([B.JW,B.tD,A.Ua(B.ab,A.b([A.a78(new A.oo(8,q.f/30,p,B.fu,p,p,p,p),100,100),A.a2H("$_countdown",B.Gw)],s),B.h6),B.tD,A.a5q(B.JU,q.gKA())],s),B.cw))
-return new A.rb(new A.o6(n,o,new A.EL(p,p,1/0,56),p),A.IV(A.a4L(r,B.nT),p,p),p)}}
+r=A.b([B.JT,A.a2H("Acceleration: 9.8 m/s\xb2",A.ak(a).p1.e),B.F6,A.a5q(B.JU,new A.YT(p))],s)
+if(p.e){q=p.f
+r.push(A.a4L(A.b([B.JW,B.tD,A.Ua(B.ab,A.b([A.a78(new A.oo(8,q/30,o,B.fu,o,o,o,o),100,100),A.a2H(""+q,B.Gw)],s),B.h6),B.tD,A.a5q(B.JV,p.gKA())],s),B.cw))}return new A.rb(new A.o6(m,n,new A.EL(o,o,1/0,56),o),A.IV(A.a4L(r,B.nT),o,o),o)}}
 A.YS.prototype={
 $1(a){var s=this.a
 s.aL(new A.YR(s))},
@@ -51438,7 +51438,7 @@ A.YN.prototype={
 $0(){this.a.e=!1},
 $S:0}
 A.YT.prototype={
-$0(){return this.a.jH("1234567890")},
+$0(){return this.a.jH("3179910554")},
 $S:0}
 A.Lg.prototype={}
 A.a1K.prototype={}
@@ -56284,8 +56284,8 @@ B.J0=new A.i(!0,B.m,null,".AppleSystemUIFont",null,null,null,null,null,null,null
 B.G4=new A.i(!0,B.m,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,B.e,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 B.JS=new A.cf(B.HI,B.GM,B.HJ,B.Ih,B.Gp,B.Gx,B.H4,B.I3,B.Hj,B.IN,B.FV,B.Gf,B.IJ,B.J0,B.G4)
 B.JT=new A.hB("Real-Time IMU Sensor Data:",null,null,null,null)
-B.JU=new A.hB("I am okay",null,null,null,null)
-B.JV=new A.hB("Test Emergency Call",null,null,null,null)
+B.JU=new A.hB("Test Emergency Call",null,null,null,null)
+B.JV=new A.hB("I am okay, cancel call",null,null,null,null)
 B.I6=new A.i(!0,B.fu,null,null,null,null,18,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.JW=new A.hB("Alert! Crash detected.",null,B.I6,null,null)
 B.M6=new A.Va(0,"system")
