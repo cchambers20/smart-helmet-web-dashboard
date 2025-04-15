@@ -51417,7 +51417,7 @@ $S:120}
 A.YR.prototype={
 $0(){var s=this.a,r=B.vM.VY()*10
 s.d=r
-if(r>7)s.Qs()},
+if(r>700)s.Qs()},
 $S:0}
 A.YP.prototype={
 $0(){var s=this.a
