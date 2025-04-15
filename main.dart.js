@@ -51407,9 +51407,9 @@ n=m==null?n.c:m
 p.a.toString
 m=A.a2H("Smart Helmet Dashboard",o)
 s=t.nA
-r=A.b([B.JT,A.a2H("Acceleration: 9.8 m/s\xb2",A.ak(a).p1.e),B.F6,A.a5q(B.JU,new A.YT(p))],s)
+r=A.b([B.JT,A.a2H("Acceleration: "+B.c.U(p.d,2)+" m/s\xb2",A.ak(a).p1.e),B.F6,A.a5q(B.JU,new A.YT(p))],s)
 if(p.e){q=p.f
-r.push(A.a4L(A.b([B.JW,B.tD,A.Ua(B.ab,A.b([A.a78(new A.oo(8,q/30,o,B.fu,o,o,o,o),100,100),A.a2H(""+q,B.Gw)],s),B.h6),B.tD,A.a5q(B.JV,p.gKA())],s),B.cw))}return new A.rb(new A.o6(m,n,new A.EL(o,o,1/0,56),o),A.IV(A.a4L(r,B.nT),o,o),o)}}
+r.push(A.a4L(A.b([B.JV,B.tD,A.Ua(B.ab,A.b([A.a78(new A.oo(8,q/30,o,B.fu,o,o,o,o),100,100),A.a2H(""+q,B.Gw)],s),B.h6),B.tD,A.a5q(B.JW,p.gKA())],s),B.cw))}return new A.rb(new A.o6(m,n,new A.EL(o,o,1/0,56),o),A.IV(A.a4L(r,B.nT),o,o),o)}}
 A.YS.prototype={
 $1(a){var s=this.a
 s.aL(new A.YR(s))},
@@ -56285,9 +56285,9 @@ B.G4=new A.i(!0,B.m,null,".AppleSystemUIFont",null,null,null,null,null,null,null
 B.JS=new A.cf(B.HI,B.GM,B.HJ,B.Ih,B.Gp,B.Gx,B.H4,B.I3,B.Hj,B.IN,B.FV,B.Gf,B.IJ,B.J0,B.G4)
 B.JT=new A.hB("Real-Time IMU Sensor Data:",null,null,null,null)
 B.JU=new A.hB("Test Emergency Call",null,null,null,null)
-B.JV=new A.hB("I am okay, cancel call",null,null,null,null)
 B.I6=new A.i(!0,B.fu,null,null,null,null,18,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.JW=new A.hB("Alert! Crash detected.",null,B.I6,null,null)
+B.JV=new A.hB("Alert! Crash detected.",null,B.I6,null,null)
+B.JW=new A.hB("I am okay, cancel the call",null,null,null,null)
 B.M6=new A.Va(0,"system")
 B.JX=new A.rZ(null)
 B.tR=new A.AX(0,"clamp")
