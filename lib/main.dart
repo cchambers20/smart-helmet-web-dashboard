@@ -34,14 +34,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double _acceleration = 0.0;
-  double _temperature = 0.0;
   bool _alertActive = false;
   int _countdown = 30;
 
   Timer? _alertTimer;
   dynamic _connectedDevice;
   dynamic _accelChar;
-  dynamic _tempChar;
   dynamic _crashChar;
 
   @override
@@ -89,7 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
       final service = await server.getPrimaryService("your-service-uuid-here");
 
       _accelChar = await service.getCharacteristic("your-acceleration-char-uuid");
-      _tempChar = await service.getCharacteristic("your-temperature-char-uuid");
       _crashChar = await service.getCharacteristic("your-crash-char-uuid");
 
       await _setupNotifications();
@@ -106,14 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
       final accel = value.buffer.asByteData().getFloat32(0, Endian.little);
       setState(() {
         _acceleration = accel;
-      });
-    });
-
-    await _tempChar.startNotifications();
-    _tempChar.valueChanged.listen((value) {
-      final temp = value.buffer.asByteData().getFloat32(0, Endian.little);
-      setState(() {
-        _temperature = temp;
       });
     });
 
@@ -169,74 +158,106 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text('Real-Time IMU Sensor Data:'),
-              const SizedBox(height: 10),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
               Text(
-                'Acceleration: ${_acceleration.toStringAsFixed(2)} m/s²',
+                'Helmet Status',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              Text(
-                'Temperature: ${_temperature.toStringAsFixed(2)} °C',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () => _makePhoneCall('3179910554'),
-                child: const Text('Test Emergency Call'),
-              ),
               const SizedBox(height: 20),
-              ElevatedButton(
+
+              Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                elevation: 6,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      const Icon(Icons.speed, size: 48, color: Colors.blue),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Acceleration',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      Text(
+                        '${_acceleration.toStringAsFixed(2)} m/s²',
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              ElevatedButton.icon(
                 onPressed: _searchAndConnectToBluetoothDevice,
-                child: const Text('Search and Connect to Helmet (BLE)'),
+                icon: const Icon(Icons.bluetooth),
+                label: const Text('Connect to Helmet (BLE)'),
               ),
               const SizedBox(height: 10),
+
               if (_connectedDevice != null)
                 Text('Connected to: ${_connectedDevice.name}'),
+
               const SizedBox(height: 30),
+
               if (_alertActive)
-                Column(
-                  children: [
-                    const Text(
-                      'Alert! Crash detected.',
-                      style: TextStyle(color: Colors.red, fontSize: 18),
-                    ),
-                    const SizedBox(height: 10),
-                    Stack(
-                      alignment: Alignment.center,
+                Card(
+                  color: Colors.red.shade100,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  elevation: 6,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
                       children: [
-                        SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: CircularProgressIndicator(
-                            value: _countdown / 30,
-                            strokeWidth: 8,
-                            color: Colors.red,
-                          ),
+                        const Icon(Icons.warning, size: 48, color: Colors.red),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'Crash Detected!',
+                          style: TextStyle(color: Colors.red, fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        Text(
-                          '$_countdown',
-                          style: const TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
+                        const SizedBox(height: 10),
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: CircularProgressIndicator(
+                                value: _countdown / 30,
+                                strokeWidth: 8,
+                                color: Colors.red,
+                              ),
+                            ),
+                            Text(
+                              '$_countdown',
+                              style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          onPressed: _cancelAlert,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
                           ),
+                          child: const Text('I am okay, cancel alert'),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: _cancelAlert,
-                      child: const Text('I am okay, cancel the call'),
-                    ),
-                  ],
+                  ),
                 ),
             ],
           ),
